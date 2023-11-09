@@ -79,13 +79,26 @@
       .delete:hover {
         color: black;
        background-color: yellow;}
+       .change{
+        border: none;
+        color: white;
+        padding: 6px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        border-radius: 10px;
+       background-color: blue;
+      }
+      .change:hover {
+       background-color: green;}
   </style>
 </head>
 <body>
   <div class="panel">
     <h2>Packages</h2>
     <a href="package.php"><button class="button2">Create New</button></a><br><br>
-		<?php
+		<?php 
       require('dbconnect.php');
       $q="select * from packages,mode where packages.mode_id=mode.mode_id";
       $result=mysqli_query($con,$q);
@@ -101,10 +114,10 @@
                   <th>Description</th>
                   <th>Mode</th>
                   <th>Places</th>
-                  <th>Status</th>
                   <th>Date Of Creation</th>
                   <th>Image</th>
                   <th>Number of Days</th>
+                  <th>Status</th>
                   <th>Operations</th>
                 </tr>
               </thead>
@@ -124,13 +137,27 @@
         <td>".$row['description']."</td>
         <td>".$row['mode']."</td>
         <td>".rtrim($place,',')."</td>";
-        if (($row['status'])==1) {
-          echo "<td>Active</td>";
-        }else{echo "<td>Inactive</td>";}
         echo "<td>".$row['date_created']."</td>
         <td><img src='../Images/".$row['upload']."'width='100px' height='100%'></td>
-        <td>".$row['no_days']."</td>
-        <form method='post'>
+        <td>".$row['no_days']."</td>";
+
+        if (($row['status'])==0|1) {
+          echo "<form action='activation.php?pid=$pid' method='post'>";
+          echo "<td><select name='act'>";
+          if(($row['status']==1)){
+            echo "<option value='1'>Active";
+            echo "<option value='0'>Inactive";
+          }
+          elseif(($row['status'])==0){
+            echo "<option value='0'>Inactive";  
+            echo "<option value='1'>Active";
+          } 
+          echo "</select><br><br>";
+        }
+          echo "<button class='change' name='change'>Ok</a></td></form>";
+
+
+        echo "<form method='post'>
         <td>
         <button formaction='delpack.php?pid=$pid' name='delete' class='delete'>Delete</button></td>
         </form>
@@ -141,8 +168,11 @@
 
       }
       if (isset($_GET['ok'])) {
-                    echo "<script>alert('Deleted Successfully');</script>";
-                }
+          echo "<script>alert('Deleted Successfully');</script>";
+      }
+      if (isset($_GET['done'])) {
+        echo '<script>alert("Changed");</script>';
+      }
 	  ?>
   </div>
 </body>

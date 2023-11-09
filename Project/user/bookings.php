@@ -43,8 +43,8 @@
     border-bottom: 1px solid #dddddd;
 }
 
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #272829;
+.styled-table tbody tr{
+    background-color: black;
     color:white;
     border:1px;
 }
@@ -173,7 +173,7 @@
             }else{echo "<h3 style='color:white;text-align:center;'>Log In To Book Your Trip</h3>";}
 
               if (isset($_GET['cancel'])) {
-                echo "<script>alert('Booking Cancelled');</script>";
+                echo "<script>alert('Booking Cancelled ; Payment Refunded');</script>";
               }
               if (isset($_GET['tcost'])) {
                   $tcost=$_GET['tcost'];

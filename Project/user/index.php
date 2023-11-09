@@ -238,10 +238,12 @@
 								<p class="para">'. $row['description'] .'</p><br>
 								<h5>$'. $row['cost'] .'</h5><br>';
 								if(mysqli_num_rows($res2)>0){
-									echo "<h5><i style='color:yellow;' class='fa fa-star'></i> ". rtrim($rate, '.0') ." <span><a href='readmore.php?pid=$pid'><u>Read More</u></a></span></h5>";
+									echo "<h5><i style='color:yellow;' class='fa fa-star'></i> ". rtrim($rate, '.0') ." <span><a href='readmore.php?pid=$pid'><u>Read More</u></a></span></h5><br>";
 								}
-                               echo "<a href='booktrip.php?pid=$pid' class='action-button btn mt-lg-5 mt-4'>Book</a>
-                            </div>
+								if(($row['status'])==1){
+                               echo "<a href='booktrip.php?pid=$pid' class='action-button btn mt-lg-5 mt-4'>Book</a>";}
+							   else{echo "<h5 style='color:red;'>Not Available</h5>";}
+                            echo "</div>
                         </div>
                     </div>
                 </div>";

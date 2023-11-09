@@ -178,7 +178,7 @@ form .user-details .input-box{
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="text" name="email" placeholder="Enter your Email" required>
+            <input type="email" name="email" placeholder="Enter your Email" required>
             </div>
           <div class="input-box">
             <span class="details">Password</span>
@@ -186,7 +186,7 @@ form .user-details .input-box{
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" name="phone" placeholder="Enter your Number" required>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your Number" required>
           </div>
           <div class="input-box">
             <span class="details">House Name</span>
@@ -194,7 +194,7 @@ form .user-details .input-box{
           </div>
           <div class="input-box">
             <span class="details">Pincode</span>
-            <input type="text" name="pincode" placeholder="Enter your Pincode" required>
+            <input type="number" name="pincode" pattern="[0-6]{3}-[0-6]{2}-[0-6]{3}" placeholder="Enter your Pincode" required>
           </div>
         </div>
         

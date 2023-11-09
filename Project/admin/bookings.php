@@ -112,22 +112,30 @@
                   }
                   else{echo "<td><select name='aprove'>";}
                   if (($row['status_admin'])==0) {
-                    echo "<option>Pending";
+                    echo "<option value='0'>Pending";
+                    echo "<option value='1'>Confirm";
+                    echo "<option value='2'>Completed";
+                    echo "<option value='3'>Cancel";
                   }
                   elseif (($row['status_admin'])==1) {
-                    echo "<option>Confirm";
+                    echo "<option value='1'>Confirm";
+                    echo "<option value='0'>Pending";
+                    echo "<option value='2'>Completed";
+                    echo "<option value='3'>Cancel";
                   }
                   elseif (($row['status_admin'])==2) {
-                    echo "<option>Completed";
+                    echo "<option value='2'>Completed";
+                    echo "<option value='1'>Confirm";
+                    echo "<option value='0'>Pending";
+                    echo "<option value='3'>Cancel";
                   }
                   else{
-                    echo "<option>Cancel";
+                    echo "<option value='3'>Cancel";
+                    echo "<option value='0'>Pending";
+                    echo "<option value='1'>Confirm";
+                    echo "<option value='2'>Completed";
                   }
-                  
-                echo "<option value='0'>Pending";
-                echo "<option value='1'>Confirm";
-                echo "<option value='2'>Completed";
-                echo "<option value='3'>Cancel";  
+                    
                 echo "</select><br><br>";
                 if ((($row['status_admin'])==2)) {
                   echo "<button disabled class='change' name='change'>Ok</a></td></form>";
