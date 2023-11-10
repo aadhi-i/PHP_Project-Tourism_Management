@@ -1,8 +1,3 @@
-
-<!--
-   Author: W3layouts
-   Author URL: http://w3layouts.com
--->
 <?php
 	require('menu.php');
 ?>
@@ -23,6 +18,22 @@
 		.card{
 			background-color: #272829;
 		}
+		.w3l-main-slider button.btn-theme2 {
+    padding: 0px 30px;
+    color: #fff;
+    height: 55px;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 55px;
+    text-transform: capitalize;
+    font-weight: 700;
+    transition: 0.3s ease-in;
+    background-color: #40bad5;
+    border-color: #40bad5; }
+  .w3l-main-slider a.btn-theme2:hover {
+    background-color: #fcbf1e;
+    border-color: #fcbf1e;
+    color: #fff; }
 	</style>
   </head>
 <body id="home">
@@ -41,7 +52,10 @@
                   <h5>Welcome ,<br>
                     Let’s Travel</h5>
                   <p>We offer you the best experience for your holidays. Make memories with your loved ones ! Explore the birght colours of the world with us !</p>
-                  <a class="btn btn-theme2 mt-lg-5 mt-4" href="#top">Book Your Trip</a>
+                  <form action="search.php" method="post">
+				  <input type="text" class="form-control"  id="w3lSender" name="search" placeholder="Search for Places">
+				  <button class="btn btn-theme2 mt-lg-5 mt-4">Search</button>
+				  </form> 
                 </div>
               </div>
             </div>
@@ -57,7 +71,10 @@
                   <h5>Welcome ,<br>
                     Let’s Travel </h5>
                   <p>We offer you the best experience for your holidays. Make memories with your loved ones ! Explore the birght colours of the world with us !</p>
-                   <a class="btn btn-theme2 mt-lg-5 mt-4" href="#top">Book Your Trip</a>
+				  <form action="search.php" method="post">
+				  <input type="text" class="form-control"  id="w3lSender" name="search" placeholder="Search for Places">
+				  <button class="btn btn-theme2 mt-lg-5 mt-4">Search</button>
+				  </form> 
                 </div>
               </div>
             </div>
@@ -73,7 +90,10 @@
                   <h5>Welcome ,<br>
                   Let’s Travel</h5>
                   <p>We offer you the best experience for your holidays. Make memories with your loved ones ! Explore the birght colours of the world with us !</p>
-                   <a class="btn btn-theme2 mt-lg-5 mt-4" href="#top">Book Your Trip</a>
+				  <form action="search.php" method="post">
+				  <input type="text" class="form-control"  id="w3lSender" name="search" placeholder="Search for Places">
+				  <button class="btn btn-theme2 mt-lg-5 mt-4">Search</button>
+				  </form> 
                 </div>
               </div>
             </div>

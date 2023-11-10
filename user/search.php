@@ -1,11 +1,6 @@
 <?php
 	require('menu.php');
 ?>
-<!--
-   Author: W3layouts
-   Author URL: http://w3layouts.com
--->
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,6 +14,11 @@
     <link rel="stylesheet" href="assets/css/style-starter.css">
     <link href="//fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+ .card{
+			background-color: #525252;
+		}
+    </style>
   </head>
   <body id="home">
 
@@ -30,7 +30,7 @@
             <ul class="breadcrumbs-custom-path">
                 <li class="right-side propClone"><a href="index.php" class="editContent">Home <span class="fa fa-angle-right" aria-hidden="true"></span></a> <p></li>
                 <li class="active editContent">
-                    Contact</li>
+                    Searching...</li>
             </ul>
             </div>
 </div>
@@ -40,45 +40,75 @@
 <section class="w3l-contact-info-main" id="contact">
     <div class="contact-sec	editContent">
         <div class="container">
-    
-            <div class="d-grid contact-view">
+        <?php
+        if(!empty($_POST['search'])){
+            require('dbconnect.php');
+            $search=$_POST['search'];
+            
+            $q="select * from places where place='$search'";
+            $res=mysqli_query($con,$q);
+        if(($row=mysqli_fetch_assoc($res))>0){
+            $placeid=$row['place_id'];
 
-                <div class="cont-details">
-                    <h3 class="sub-title">Quick Contact</h3> 
-                    <p class="para mt-3 mb-4">Get in touch with us . <br>Use the following contact details : </p>
-                    <div class="cont-top">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-phone text-secondary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <p class="para"><a href="tel:+911234567890">+1234 56 78 90</a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-envelope-o text-secondary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <p class="para"><a href="mailto:example@mail.com" class="mail">thousandsunny-mail@support.com</a></p>
-                        </div>
-                    </div>
-                    <div class="cont-top margin-up">
-                        <div class="cont-left text-center">
-                            <span class="fa fa-map-marker text-secondary"></span>
-                        </div>
-                        <div class="cont-right">
-                            <p class="para"> Kochi, Ernakulam,
-                                <br> Kerala,
-                                <br> INDIA.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="map-iframe ">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d251482.7184990422!2d76.13612104751219!3d9.98233153162407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d514abec6bf%3A0xbd582caa5844192!2sKochi%2C%20Kerala!5e0!3m2!1sen!2sin!4v1695836613831!5m2!1sen!2sin" width="100%" height="300" frameborder="0" style="border: 0px; pointer-events: none;" allowfullscreen=""></iframe>
-                </div>
-            </div>
+            $q1="select * from place_pack where place_id='$placeid'";
+            $res1=mysqli_query($con,$q1);
+            $row1=mysqli_fetch_assoc($res1);
+            $pid=$row1['package_id'];
 
+            $q2="select * from packages,mode where packages.mode_id=mode.mode_id and package_id='$pid'";
+            $res2=mysqli_query($con,$q2);
+            while(($row2=mysqli_fetch_assoc($res2))>0){
+                $pid=$row2['package_id'];
+
+					$q3="select * from rate_review where package_id='$pid'";
+          			$res3=mysqli_query($con,$q3) or die("Worng query");
+
+					$q4="select AVG(rate) AS avg_rate from rate_review where package_id='$pid'";
+					$res4=mysqli_query($con,$q4);
+					$rate=mysqli_fetch_column($res4);
+					
+					
+
+					$place='';
+					$q5="select place from places,place_pack where places.place_id=place_pack.place_id and place_pack.package_id='$pid'";
+					$res5=mysqli_query($con,$q5);
+					while ($row5=mysqli_fetch_assoc($res5)) {
+                    $place=$place.$row5['place'].",";
+
+            echo '<div class="container">
+            <div class="row">
+                <div class="card col-md-12 p-3 mt-4">
+                    <div class="row ">
+                        <div class="col-md-4">
+                            <img alt="product" class="img-responsive " src="../Images/'.$row2['upload'].'">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-block">
+                                <br><h5>'. $row2['title'] .'</h5><br>
+                                <p class="pos-date"><span class="fa fa-clock-o mr-1"></span>'.$row2['no_days'].'</p><p class="pos-date text-right"><span class="fa fa-plane mr-1"></span> Transportation &nbsp: '.$row2['mode'].'</p>
+								<p class="para">Places we include &nbsp:&nbsp'.rtrim($place,",").'</p> <br>
+								<p class="para">'. $row2['description'] .'</p><br>
+								<h5>$'. $row2['cost'] .'</h5><br>';
+								if(mysqli_num_rows($res2)>0){
+									echo "<h5><i style='color:yellow;' class='fa fa-star'></i> ". rtrim($rate, '.0') ." <span><a href='readmore.php?pid=$pid'><u>Read More</u></a></span></h5><br>";
+								}
+								if(($row2['status'])==1){
+                               echo "<a href='booktrip.php?pid=$pid' class='action-button btn mt-lg-5 mt-4'>Book</a>";}
+							   else{echo "<h5 style='color:red;'>Not Available</h5>";}
+                            echo "</div>
+                        </div>
+                    </div>
+                </div>";
+                               
+            }
+        
+        }
+    }
+    else{echo "<h5 style='color:red;'>No Packages Found</h5>";}
+    }
+
+        
+        ?>
         </div>
     </div>
 </section>
@@ -92,7 +122,7 @@
 					<li><p><span class="fa fa-map-marker"></span>Kochi, Ernakulam,
 						Kerala,
 						INDIA.</p></li>
-					<li><a href="tel:+911234567890"><span class="fa fa-phone"></span> +(91)-1234567890</a></li>
+            <li><a href="tel:+911234567890"><span class="fa fa-phone"></span> +(91)-1234567890</a></li>
 					<li><a href="mailto:example@mail.com" class="mail"><span class="fa fa-envelope-open-o"></span> thousandsunny-mail@support.com</a></li>
 				</ul>
 				<div class="main-social-footer-29">

@@ -1,11 +1,12 @@
 
+<?php
+	require('menu.php');
+?>
 <!--
    Author: W3layouts
    Author URL: http://w3layouts.com
 -->
-<?php
-	require('menu.php');
-?>
+
 <!doctype html>
 <html lang="en">
   <head>

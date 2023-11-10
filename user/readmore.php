@@ -1,11 +1,12 @@
-<!--
-   Author: W3layouts
-   Author URL: http://w3layouts.com
--->
 <?php
 	require('menu.php');
     require('dbconnect.php');
 ?>
+<!--
+   Author: W3layouts
+   Author URL: http://w3layouts.com
+-->
+
 <!doctype html>
 <html lang="en">
   <head>
