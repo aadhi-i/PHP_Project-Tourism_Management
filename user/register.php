@@ -127,6 +127,10 @@ form .input-box span.details{
    transition: all 0.3s ease;
    background: linear-gradient(135deg, #71b7e6, #9b59b6);
  }
+ .hidden
+{
+  display:none;
+}
  form .button input:hover{
   /* transform: scale(0.99); */
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
@@ -185,16 +189,12 @@ form .user-details .input-box{
             <input type="password" name="password" placeholder="Enter your Password" required>
           </div>
           <div class="input-box">
-            <span class="details">Phone Number</span>
-            <input type="tel" id="phone" name="phone" placeholder="Enter your Number" required>
-          </div>
-          <div class="input-box">
-            <span class="details">House Name</span>
-            <input type="text" name="housename" placeholder="Enter your House name" required>
+            <span class="details">Country</span>
+            <input type="text" name="country" value="INDIA" disabled>
           </div>
           <div class="input-box">
             <span class="details">Pincode</span>
-            <input type="number" name="pincode" pattern="[0-6]{3}-[0-6]{2}-[0-6]{3}" placeholder="Enter your Pincode" required>
+            <input type="number" min="100000" max="999999" name="pincode" placeholder="Enter your Pincode" required>
           </div>
         </div>
         

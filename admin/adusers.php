@@ -72,8 +72,7 @@
                   <th>Username</th>
                   <th>Password[Encrypted]</th>
                   <th>Email</th>
-                  <th>Phone</th>
-                  <th>Housename</th>
+                  <th>Country</th>
                   <th>Pincode</th>
                   <th>Operations</th>
                 </tr>
@@ -88,8 +87,7 @@
 				<td>".$row['username']."</td>
         <td>".$password."</td>
         <td>".$row['email']."</td>
-        <td>".$row['phone']."</td>
-        <td>".$row['housename']."</td>
+        <td>INDIA</td>
         <td>".$row['pincode']."</td>
         <form method='post'>
         <td><button formaction='deluser.php?uid=$uid' name='delete' class='delete'>Delete</button></td>

@@ -6,7 +6,6 @@
    Author: W3layouts
    Author URL: http://w3layouts.com
 -->
-
 <!doctype html>
 <html lang="en">
   <head>
