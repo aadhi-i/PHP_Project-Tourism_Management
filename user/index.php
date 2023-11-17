@@ -34,6 +34,20 @@
     background-color: #fcbf1e;
     border-color: #fcbf1e;
     color: #fff; }
+	.w3l-main-slider .banner-view {
+    background: url(../Images/gif2.gif) no-repeat center;
+    background-size: cover;
+    min-height: calc(100vh - 50px);
+    position: relative;
+    z-index: 0;
+    display: grid;
+    align-items: center; }
+	.w3l-main-slider .banner-top1 {
+    background: url(../Images/gif4.gif) no-repeat center;
+    background-size: cover; }
+  .w3l-main-slider .banner-top2 {
+    background: url(../Images/gif3.gif) no-repeat center;
+    background-size: cover; }
 	</style>
   </head>
 <body id="home">
